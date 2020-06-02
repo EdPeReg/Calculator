@@ -15,7 +15,16 @@ public:
     Calculator(QWidget *parent = nullptr);
     ~Calculator();
 
+    /* Will set up the calculator's interface. */
+    void setUpInterfaceStyle();
+
 private:
     Ui::Calculator *ui;
+
+private slots:
+    void numBtnPressed();
+    void mathBtnPressed();
+    void equalBtnPressed();
+    void changeNumberSign();
 };
 #endif // CALCULATOR_H
