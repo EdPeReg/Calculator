@@ -1,6 +1,8 @@
 #include "calculator.h"
 #include "ui_calculator.h"
 
+#include <iostream>
+
 Calculator::Calculator(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::Calculator)
@@ -8,6 +10,8 @@ Calculator::Calculator(QWidget *parent)
     ui->setupUi(this);
 
     setUpInterfaceStyle();
+    setUpConnectionNumBtns();
+
 }
 
 Calculator::~Calculator()
@@ -54,4 +58,26 @@ void Calculator::setUpInterfaceStyle() {
 
     ui->display->setText("0.0");
     ui->display->setAlignment(Qt::AlignRight);
+}
+
+void Calculator::setUpConnectionNumBtns()
+{
+    ui->display->setText(QString::number(currentVal));
+    QVector<QPushButton *> numButtons;
+
+    for(int i = 0; i < AMOUNT_NUM_BTN; i++) {
+        // btnName should be exactly the object button name.
+        QString btnName = "btn" + QString::number(i);
+
+        // Search a button provided by name.
+        numButtons.append(Calculator::findChild<QPushButton *>(btnName));
+
+        // Make a connection when a button is released.
+        connect(numButtons.at(i), &QPushButton::released, this, &Calculator::numBtnPressed);
+    }
+}
+
+void Calculator::numBtnPressed()
+{
+    std::cout << "kjlkjljkhola\n";
 }

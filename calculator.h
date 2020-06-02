@@ -18,13 +18,25 @@ public:
     /* Will set up the calculator's interface. */
     void setUpInterfaceStyle();
 
+    /* Will set up the connections from the buttons 0-9. */
+    void setUpConnectionNumBtns();
+
 private:
     Ui::Calculator *ui;
 
+    double currentVal = 0.0;
+
+    // 0-9 buttons.
+    const int AMOUNT_NUM_BTN = 10;
+    bool  divTrigger = false;
+    bool  mulTrigger = false;
+    bool  addTrigger = false;
+    bool  subTrigger = false;
+
 private slots:
     void numBtnPressed();
-    void mathBtnPressed();
+    /*void mathBtnPressed();
     void equalBtnPressed();
-    void changeNumberSign();
+    void changeNumberSign();*/
 };
 #endif // CALCULATOR_H
