@@ -9,6 +9,7 @@ Calculator::Calculator(QWidget *parent)
 {
     ui->setupUi(this);
 
+    ui->display->setReadOnly(true);
     setUpInterfaceStyle();
     setUpConnectionNumBtns();
 
@@ -77,7 +78,45 @@ void Calculator::setUpConnectionNumBtns()
     }
 }
 
+void Calculator::setDisplayValue(const QString &btnValue, const QString &displayVal) {
+    // There is not value in our display.
+    if(displayVal.toDouble() == 0 or displayVal.toDouble() == 0.0) {
+        ui->display->setText(btnValue);
+    }
+    // If there is already a number in our display.
+    else {
+        QString newValue = displayVal + btnValue;
+        double dlbNewValue = newValue.toDouble();
+
+        // 'g' will use 'e' or 'E' format with 16 digitis precision.
+        ui->display->setText(QString::number(dlbNewValue, 'g', 16));
+    }
+}
+
+/************************* SLOTS ***************************************************/
+
 void Calculator::numBtnPressed()
 {
-    std::cout << "kjlkjljkhola\n";
+    // Get the button who originated the signal.
+    QPushButton *btnPressed = (QPushButton *)sender();
+    QString btnValue = btnPressed->text();
+    QString displayValue = ui->display->text();
+
+    setDisplayValue(btnValue, displayValue);
 }
+
+void Calculator::mathBtnPressed()
+{
+
+}
+
+void Calculator::equalBtnPressed() {
+
+}
+
+void Calculator::changeNumberSign() {
+
+}
+
+
+

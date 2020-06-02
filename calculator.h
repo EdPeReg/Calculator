@@ -21,6 +21,12 @@ public:
     /* Will set up the connections from the buttons 0-9. */
     void setUpConnectionNumBtns();
 
+    /* The new values pressed from the number buttons will be shown in our display.
+       @param btnVal will be the value from the button pressed.
+       @param displayVal will be the value from our display.
+       @return None. */
+    void setDisplayValue(const QString &btnVal, const QString &displayVal);
+
 private:
     Ui::Calculator *ui;
 
@@ -35,8 +41,8 @@ private:
 
 private slots:
     void numBtnPressed();
-    /*void mathBtnPressed();
+    void mathBtnPressed();
     void equalBtnPressed();
-    void changeNumberSign();*/
+    void changeNumberSign();
 };
 #endif // CALCULATOR_H
