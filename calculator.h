@@ -21,12 +21,23 @@ public:
     /* Will set up the connections from the buttons 0-9. */
     void setUpConnectionNumBtns();
 
+    /* Will set up the connection for the math buttons. */
+    void setUpConnectionMathBtns();
+
     /* The new values pressed from the number buttons will be shown in our display.
        @param btnVal will be the value from the button pressed.
        @param displayVal will be the value from our display.
        @return None. */
     void setDisplayValue(const QString &btnVal, const QString &displayVal);
 
+    /* Will reset all the triggers to their defaul values. */
+    void resetTriggers();
+
+    /* Will set the corresponding trigger depending of the button operation was pressed. */
+    void setTriggers(const QString& btnValue);
+
+    /* Will get the result of the operation. */
+    double getResult() const;
 private:
     Ui::Calculator *ui;
 
@@ -40,9 +51,15 @@ private:
     bool  subTrigger = false;
 
 private slots:
+    /* Will get which button from 0-9 was pressed and set up into the display. */
     void numBtnPressed();
+
+    /* Will check when an operation button is pressed. */
     void mathBtnPressed();
+
+    /* Will do the final result. */
     void equalBtnPressed();
     void changeNumberSign();
+    void clear();
 };
 #endif // CALCULATOR_H
