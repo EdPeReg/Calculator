@@ -18,6 +18,8 @@ Calculator::Calculator(QWidget *parent)
     connect(ui->btnClear, &QPushButton::released, this, &Calculator::clear);
     connect(ui->btnChangeSign, &QPushButton::released, this, &Calculator::changeNumberSign);
 
+    QKeyEvent *event;
+    keyPressEvent(event);
 }
 
 Calculator::~Calculator()
@@ -69,7 +71,6 @@ void Calculator::setUpInterfaceStyle() {
 void Calculator::setUpConnectionNumBtns()
 {
     ui->display->setText(QString::number(currentVal));
-    QVector<QPushButton *> numButtons;
 
     for(int i = 0; i < AMOUNT_NUM_BTN; i++) {
         // btnName should be exactly the object button name.
@@ -143,6 +144,50 @@ double Calculator::getResult() const
     }
 
     return solution;
+}
+
+void Calculator::numKeyPressed(QKeyEvent *event)
+{
+    QString keyValue = event->text();
+    QString displayValue = ui->display->text();
+
+    setDisplayValue(keyValue, displayValue);
+}
+
+void Calculator::keyPressEvent(QKeyEvent *event)
+{
+    switch(event->key()) {
+        case Qt::Key_0:
+            numKeyPressed(event);
+        break;
+        case Qt::Key_1:
+            numKeyPressed(event);
+        break;
+        case Qt::Key_2:
+            numKeyPressed(event);
+        break;
+        case Qt::Key_3:
+            numKeyPressed(event);
+        break;
+        case Qt::Key_4:
+            numKeyPressed(event);
+        break;
+        case Qt::Key_5:
+            numKeyPressed(event);
+        break;
+        case Qt::Key_6:
+            numKeyPressed(event);
+        break;
+        case Qt::Key_7:
+            numKeyPressed(event);
+        break;
+        case Qt::Key_8:
+            numKeyPressed(event);
+        break;
+        case Qt::Key_9:
+            numKeyPressed(event);
+        break;
+    }
 }
 
 /************************* SLOTS ***************************************************/

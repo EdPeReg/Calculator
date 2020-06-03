@@ -2,6 +2,8 @@
 #define CALCULATOR_H
 
 #include <QMainWindow>
+#include <QKeyEvent>
+#include <QPushButton>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Calculator; }
@@ -38,8 +40,14 @@ public:
 
     /* Will get the result of the operation. */
     double getResult() const;
+
+    /* Will get which key from 0-9 was pressed and set up into the display.
+       @param event will be the event from the keyboard. */
+    void numKeyPressed(QKeyEvent *event);
 private:
     Ui::Calculator *ui;
+
+    QVector<QPushButton *> numButtons;
 
     double currentVal = 0.0;
 
@@ -49,6 +57,9 @@ private:
     bool  mulTrigger = false;
     bool  addTrigger = false;
     bool  subTrigger = false;
+
+protected:
+    void keyPressEvent(QKeyEvent *event) override;
 
 private slots:
     /* Will get which button from 0-9 was pressed and set up into the display. */
